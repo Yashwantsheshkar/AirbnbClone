@@ -10,9 +10,9 @@ import SwiftUI
 struct ExploreView: View {
     var body: some View {
         NavigationStack {
-            SearchAndFilterBar()
+            
             ScrollView {
-               
+                SearchAndFilterBar()
                 LazyVStack {
                     ForEach(0...30, id:\.self) { listing in
                         ListingItemView()
