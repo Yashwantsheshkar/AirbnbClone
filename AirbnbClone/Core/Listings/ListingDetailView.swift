@@ -18,11 +18,32 @@ struct ListingDetailView: View {
         "listing-5"
     ]
     
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         ScrollView(showsIndicators: false) {
-            ListingImageCarouselView()
-                .frame(height: 320)
-                .tabViewStyle(.page)
+            ZStack(alignment: .topLeading) {
+                
+                ListingImageCarouselView()
+                    .frame(height: 320)
+                    .tabViewStyle(.page)
+                
+                Button  {
+                    dismiss()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundStyle(.black)
+                        .background{
+                            Circle()
+                                .fill(.white)
+                                .frame(width: 32, height: 32)
+                        }
+                        .padding(32)
+                }
+                
+
+                
+            }
             
             VStack(alignment: .leading, spacing: 8) {
                 
@@ -151,7 +172,7 @@ struct ListingDetailView: View {
                         
                         Spacer()
                     }
-                 }
+                }
             }
             .padding()
             
@@ -171,6 +192,7 @@ struct ListingDetailView: View {
             
             
         }
+        .ignoresSafeArea()
         .padding(.bottom, 100)
         .overlay(alignment: Alignment.bottom) {
             VStack {
@@ -178,7 +200,7 @@ struct ListingDetailView: View {
                     .padding(.bottom)
                 
                 HStack {
-                   
+                    
                     VStack(alignment:.leading){
                         Text("$500")
                             .font(.headline)
@@ -195,7 +217,9 @@ struct ListingDetailView: View {
                     
                     Spacer()
                     
-                    Button(action: {}) {
+                    Button(action: {
+                        dismiss()
+                    }) {
                         Text("Reserve")
                             .foregroundColor(.white)
                     }
